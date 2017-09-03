@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    signingConfigs {
+        config {
+            keyAlias 'JunXing_llj'
+            keyPassword 'ips3m9*liuliangjun'
+            storeFile file('liuliangjun.jks')
+            storePassword '100_JunXing'
+        }
+    }
+    defaultConfig {
+        applicationId "com.xfi.liuliangjun"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug{
+           signingConfig signingConfigs.config
+            pseudoLocalesEnabled true
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    //字体图标库
+    compile 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
+    //微信开发相关依赖
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+}
